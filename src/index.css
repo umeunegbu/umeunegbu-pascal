@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
+@layer base{
+    body{
+        @apply font-[Montserrat];
+       @apply bg-[#ff7f50]; 
+       @apply text-[#000000];
+       @apply font-[500];
+    }
+    li{
+        @apply px-4;
+    }
+}
+
+.content-div{
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 17rem;
+}
+
+
