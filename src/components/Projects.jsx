@@ -19,7 +19,7 @@ const Projects = () => {
 
                 <strong> *Real Estate Website for Treasure Garden Investment Ltd: </strong> a comprehensive Real Estate Website for a Real Estate Company, featuring property listings and a clean, professional design that enhances user interaction and engagement; built with HTML, CSS, JavaScript and Bootstrap.
 
-                <strong> *Portfolio Website for Umeunegbu Pascal: </strong> a personal portfolio showcasing my skills as a Web and Front-End Developer. This website serves as a testament to my design capabilities and technical proficiency, featuring my projects, skills, and contact information in a visually appealing layout; built with React, Vite and Tailwind.
+                <strong> *Portfolio Website for Umeunegbu Pascal: </strong> a personal portfolio showcasing my skills as a Web and Front-End Developer. This website serves as a testament to my design capabilities and technical proficiency, featuring my projects, skills, and contact information in a visually appealing layout; built with React, CRA and Tailwind.
             </p>
 
             <div className='w-full grid grid-cols sm:grid-cols-2 gap-4 text-center mx-auto'>
