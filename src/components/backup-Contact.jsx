@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import emailjs from "emailjs-com";
 import { HiArrowNarrowRight } from "react-icons/hi";
 
 const Contact = () => {
@@ -7,7 +8,6 @@ const Contact = () => {
     email: "",
     message: "",
   });
-  const [clicked, setClicked] = useState(false);
 
   const handleChange = (e) => {
     setFormData({
@@ -16,10 +16,24 @@ const Contact = () => {
     });
   };
 
-  const handleButtonClick = () => {
-    setClicked(true);
-    // Optionally reset after a short delay
-    setTimeout(() => setClicked(false), 2000);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    emailjs
+      .send(
+        process.env.REACT_APP_EMAILJS_SERVICE_ID,
+        process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
+        formData,
+        process.env.REACT_APP_EMAILJS_USER_ID
+      )
+      .then(
+        (result) => {
+          console.log("Email sent successfully:", result.text);
+        },
+        (error) => {
+          console.error("Error sending email:", error.text);
+        }
+      );
   };
 
   return (
@@ -29,12 +43,8 @@ const Contact = () => {
         <h1 className="text-2xl font-bold text-center sm:text-start">
           Contact
         </h1>
-        <form
-          action="https://formsubmit.co/umeunegbupascal@gmail.com"
-          method="POST"
-        >
-          {/* ...existing fields... */}
-          <div className="min-w-[328px] rounded-lg shadow-lg shadow-black hover:shadow-none focus:shadow-none mb-3 px-4 py-2 min-h-[2rem]">
+        <form onSubmit={handleSubmit}>
+          <div className="min-w-[328px] rounded-lg shadow-lg shadow-black hover:shadow-none focus:shadow-none mb-3 px-4 py-2  min-h-[2rem]">
             <label className="text-lg font-medium">
               Name:{" "}
               <input
@@ -43,12 +53,12 @@ const Contact = () => {
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
-                required
               />
             </label>
             <br />
           </div>
-          <div className="min-w-[328px] rounded-lg shadow-lg shadow-black hover:shadow-none focus:shadow-none mb-3 px-4 py-2 min-h-[2rem]">
+
+          <div className="min-w-[328px] rounded-lg shadow-lg shadow-black hover:shadow-none focus:shadow-none mb-3 px-4 py-2  min-h-[2rem]">
             <label className="text-lg font-medium">
               Email:{" "}
               <input
@@ -57,12 +67,12 @@ const Contact = () => {
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                required
               />
             </label>
             <br />
           </div>
-          <div className="min-w-[328px] rounded-lg shadow-lg shadow-black hover:shadow-none focus:shadow-none mb-3 px-4 py-2 min-h-[2rem]">
+
+          <div className="min-w-[328px] rounded-lg shadow-lg shadow-black hover:shadow-none focus:shadow-none mb-3 px-4 py-2  min-h-[2rem]">
             <label className="text-lg font-medium">
               Message:{" "}
               <textarea
@@ -70,26 +80,17 @@ const Contact = () => {
                 className="bg-[#ff7f50] block relative -top-7 left-[5.6rem] focus:border-none focus:outline-none"
                 value={formData.message}
                 onChange={handleChange}
-                required
               />
             </label>
             <br />
           </div>
-          {/* Optional: Add a honeypot field for spam protection */}
-          <input type="hidden" name="_captcha" value="false" />
-          <input
-            type="hidden"
-            name="_next"
-            value="https://umeunegbupascal.netlify.app/#home"
-          />
 
           <button
             type="submit"
-            onClick={handleButtonClick}
             className="py-2 px-4 my-4 flex items-center m-auto sm:ml-0 rounded-[20px] shadow-inner shadow-black font-bold hover:shadow-black focus:shadow-black hover:shadow-lg focus:shadow-lg focus:outline-none group hover:border-[#000]  focus:border-[#000] hover:text-[#000]  focus:text-[#000]"
           >
-            {clicked ? "Submitting..." : "Submit"}
-            <span className="ml-2 group-hover:rotate-90 group-focus:rotate-90 duration-300">
+            Submit
+            <span className="ml-2 group-hover:rotate-90 group-focus:rotate-90  duration-300">
               <HiArrowNarrowRight />
             </span>
           </button>
